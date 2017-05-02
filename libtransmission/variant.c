@@ -1185,7 +1185,7 @@ int tr_variantToFile(tr_variant const* v, tr_variant_fmt fmt, char const* filena
 
         if (nleft > 0)
         {
-            tr_logAddError(_("Couldn't save temporary file \"%1$s\": %2$s"), tmp, error->message);
+            tr_logAddError(_("Couldn’t save temporary file “%1$s”: %2$s"), tmp, error->message);
             tr_sys_path_remove(tmp, NULL);
             tr_error_free(error);
         }
@@ -1195,12 +1195,12 @@ int tr_variantToFile(tr_variant const* v, tr_variant_fmt fmt, char const* filena
 
             if (tr_sys_path_rename(tmp, filename, &error))
             {
-                tr_logAddInfo(_("Saved \"%s\""), filename);
+                tr_logAddInfo(_("Saved “%s”"), filename);
             }
             else
             {
                 err = error->code;
-                tr_logAddError(_("Couldn't save file \"%1$s\": %2$s"), filename, error->message);
+                tr_logAddError(_("Couldn’t save file “%1$s”: %2$s"), filename, error->message);
                 tr_sys_path_remove(tmp, NULL);
                 tr_error_free(error);
             }
@@ -1209,7 +1209,7 @@ int tr_variantToFile(tr_variant const* v, tr_variant_fmt fmt, char const* filena
     else
     {
         err = error->code;
-        tr_logAddError(_("Couldn't save temporary file \"%1$s\": %2$s"), tmp, error->message);
+        tr_logAddError(_("Couldn’t save temporary file “%1$s”: %2$s"), tmp, error->message);
         tr_error_free(error);
     }
 
